@@ -7,7 +7,9 @@ def xorsum(val1, val2):
     """Create xor sum between two strings"""
     password = ''
     for a, b in zip(val1, val2):
-        password = ''.join([password, chr(ord(a) ^ ord(b))])
+        if sys.version_info < (3, 0):
+            a = ord(a)
+        password = ''.join([password, chr(a ^ ord(b))])
     return password
 
 
@@ -27,11 +29,11 @@ def decode_xor(xor_str):
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:  # python
-        print decode_xor(sys.argv[1])
+        print (decode_xor(sys.argv[1]))
     elif len(sys.argv) > 0 and sys.executable is None:  # wsadmin
-        print decode_xor(sys.argv[0])
+        print (decode_xor(sys.argv[0]))
     else:
-        print "Usage: decode_xor.py <xor'ed string>"
-        print "Example: wsadmin.sh -f xor_decode.py {xor}Lz4sLCgwLTs="
-        print "or"
-        print "Example: python xor_decode.py {xor}Lz4sLCgwLTs="
+        print ("Usage: decode_xor.py <xor'ed string>")
+        print ("Example: wsadmin.sh -f xor_decode.py {xor}Lz4sLCgwLTs=")
+        print ("or")
+        print ("Example: python xor_decode.py {xor}Lz4sLCgwLTs=")
